@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <!-- 
+        All Rights Reserved
+        Author: Jake Moriarty
+    -->
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker Lite For Mort</title>
+</head>
+<body>
+<h1> 
+    Matchmaker with Mort
+</h1>
+
+<p1> Instructions: Fill out this form if you like this piece of eyecandy! :)</p1>
+<br /><br />
+
+
+    <label for="q1">Tony Soprano is the best TV protagonist of all time.</label>
+
+<select id="question1">
+  <option value="5">Strongly Agree</option>
+  <option value="4">Agree</option>
+  <option value="3">Neutral</option>
+  <option value="2">Disagree</option>
+  <option value="1">Strongly Disagree</option>
+  </select>
+  <br /><br />
+  <label for="q2">We live in a multiverse.</label>
+
+<select id="question2">
+  <option value="5">Strongly Agree</option>
+  <option value="4">Agree</option>
+  <option value="3">Neutral</option>
+  <option value="2">Disagree</option>
+  <option value="1">Strongly Disagree</option>
+  </select>
+  <br /><br />
+  <label for="q3">Pugs are ugly.</label>
+
+  <select id="question3">
+    <option value="5">Strongly Agree</option>
+    <option value="4">Agree</option>
+    <option value="3">Neutral</option>
+    <option value="2">Disagree</option>
+    <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label for="q4">Crossfit is superior to traditional workouts.</label>
+
+<select id="question4">
+  <option value="5">Strongly Agree</option>
+  <option value="4">Agree</option>
+  <option value="3">Neutral</option>
+  <option value="2">Disagree</option>
+  <option value="1">Strongly Disagree</option>
+  </select>
+  <br /><br />
+  <label for="q5">IPA's are better than domestics 99% of the time.</label>
+
+<select id="question5">
+  <option value="5">Strongly Agree</option>
+  <option value="4">Agree</option>
+  <option value="3">Neutral</option>
+  <option value="2">Disagree</option>
+  <option value="1">Strongly Disagree</option>
+  </select>
+  <br /><br />
+<button onclick="calculateCompatability()">Calculate Compatability</button>
+<p id="compatability"></p>
+
+  
+
+
+
+<script>
+console.log('Starting Matchmaker with Mort')
+
+
+function calculateCompatability() {
+   
+    console.log("calculateCompatability()")
+
+    const DESIRED_RESPONSE = [
+        5, 4, 1, 1, 5
+    ]
+    const WEIGHTED_SCORE = [ 
+        5,
+        2,
+        5,
+        1,
+        3
+    ]
+    const MAXIMUM_SCORE = 80
+let question1Response = document.getElementById('question1').selectedOptions[0].value
+let question2Response = document.getElementById('question2').selectedOptions[0].value
+let question3Response = document.getElementById('question3').selectedOptions[0].value
+let question4Response = document.getElementById('question4').selectedOptions[0].value
+let question5Response = document.getElementById('question5').selectedOptions[0].value
+
+console.log("Question 1 Responses:")
+console.log(document.getElementById('question1').selectedOptions[0].text)
+console.log(document.getElementById('question1').selectedOptions[0].value)
+console.log(question1Response)
+
+console.log("Question 2 Responses:")
+console.log(document.getElementById('question2').selectedOptions[0].text)
+console.log(document.getElementById('question2').selectedOptions[0].value)
+console.log(question2Response)
+    
+console.log("Question 3 Responses:")
+console.log(document.getElementById('question3').selectedOptions[0].text)
+console.log(document.getElementById('question3').selectedOptions[0].value)
+console.log(question3Response)
+
+console.log("Question 4 Responses:")
+console.log(document.getElementById('question4').selectedOptions[0].text)
+console.log(document.getElementById('question4').selectedOptions[0].value)
+console.log(question4Response)
+
+console.log("Question 5 Responses:")
+console.log(document.getElementById('question5').selectedOptions[0].text)
+console.log(document.getElementById('question5').selectedOptions[0].value)
+console.log(question5Response)
+
+let q1compatability = 5 - Math.abs(question1Response-DESIRED_RESPONSE[0])
+q1compatability = q1compatability * WEIGHTED_SCORE[0]
+let q2compatability = 5 - Math.abs(question2Response-DESIRED_RESPONSE[1])
+q2compatability = q2compatability * WEIGHTED_SCORE[1]
+let q3compatability = 5 - Math.abs(question3Response-DESIRED_RESPONSE[2])
+q3compatability = q3compatability * WEIGHTED_SCORE[2]
+let q4compatability = 5 - Math.abs(question4Response-DESIRED_RESPONSE[3])
+q4compatability = q4compatability * WEIGHTED_SCORE[3]
+let q5compatability = 5 - Math.abs(question5Response-DESIRED_RESPONSE[4])
+q5compatability = q5compatability * WEIGHTED_SCORE[4]
+
+
+console.log(q1compatability)
+console.log(q2compatability)
+console.log(q3compatability)
+console.log(q4compatability)
+console.log(q5compatability)
+let absolutecompatability = q1compatability + q2compatability + q3compatability + q4compatability +q5compatability
+absolutecompatability *= 100 / MAXIMUM_SCORE
+absolutecompatability = Math.round(absolutecompatability)
+console.log(absolutecompatability)
+document.getElementById("compatability").innerHTML = "Your likelihood of tasting this eyecandy is.... " + absolutecompatability
+}
+
+
+</script>
+</body>
+</html>
